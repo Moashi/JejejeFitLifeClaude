@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontFitLife.Pages.Login.Log"
+             Title="Log">
+    <ScrollView>
+        <Grid>
+            <!-- Header Section con gradiente azul -->
+            <BoxView BackgroundColor="#4F46E5" 
+                     HeightRequest="350" 
+                     VerticalOptions="Start" />
+
+            <StackLayout Padding="40,60,40,20">
+                <!-- Logo y título -->
+                <StackLayout VerticalOptions="Start" 
+                           HorizontalOptions="Center" 
+                           Spacing="20"
+                           Margin="0,40,0,60">
+
+                    <!-- Logo placeholder - aquí puedes poner tu logo real -->
+                    <Frame BackgroundColor="White" 
+                           CornerRadius="30" 
+                           WidthRequest="60" 
+                           HeightRequest="60"
+                           HasShadow="False"
+                           HorizontalOptions="Center">
+                        <Label Text="FL" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               TextColor="#4F46E5"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <Label Text="FitLife" 
+                           FontSize="32" 
+                           FontAttributes="Bold" 
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Tu camino hacia el mejor estado físico" 
+                           FontSize="16" 
+                           TextColor="White"
+                           Opacity="0.9"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+
+                <!-- Formulario de login -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="25" 
+                       Padding="30,40" 
+                       HasShadow="True"
+                       Margin="0,20,0,0">
+
+                    <StackLayout Spacing="25">
+                        <!-- Campo Usuario -->
+                        <StackLayout Spacing="8">
+                            <Label Text="Usuario" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#1F2937" />
+
+                            <Frame BackgroundColor="#F9FAFB" 
+                                   BorderColor="#E5E7EB" 
+                                   CornerRadius="12" 
+                                   Padding="0" 
+                                   HasShadow="False">
+                                <Entry x:Name="UsuarioEntry"
+                                       Placeholder="Ingresa el Usuario"
+                                       PlaceholderColor="#9CA3AF"
+                                       TextColor="#1F2937"
+                                       FontSize="16"
+                                       BackgroundColor="Transparent"
+                                       Margin="15,12" />
+                            </Frame>
+
+                            <Label x:Name="UsuarioErrorLabel" 
+                                   Text="Este campo es requerido" 
+                                   FontSize="12" 
+                                   TextColor="#EF4444"
+                                   IsVisible="False" />
+                        </StackLayout>
+
+                        <!-- Campo Contraseña -->
+                        <StackLayout Spacing="8">
+                            <Label Text="Contraseña" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#1F2937" />
+
+                            <Frame BackgroundColor="#F9FAFB" 
+                                   BorderColor="#E5E7EB" 
+                                   CornerRadius="12" 
+                                   Padding="0" 
+                                   HasShadow="False">
+                                <Grid>
+                                    <Entry x:Name="ContrasenaEntry"
+                                           Placeholder="Ingresa la Contraseña"
+                                           PlaceholderColor="#9CA3AF"
+                                           TextColor="#1F2937"
+                                           FontSize="16"
+                                           BackgroundColor="Transparent"
+                                           IsPassword="True"
+                                           Margin="15,12,50,12" />
+
+                                    <Button x:Name="TogglePasswordButton"
+                                            Text="👁"
+                                            FontSize="18"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#6B7280"
+                                            BorderWidth="0"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Margin="0,0,8,0"
+                                            Clicked="OnTogglePasswordClicked" />
+                                </Grid>
+                            </Frame>
+
+                            <Label x:Name="ContrasenaErrorLabel" 
+                                   Text="Este campo es requerido" 
+                                   FontSize="12" 
+                                   TextColor="#EF4444"
+                                   IsVisible="False" />
+                        </StackLayout>
+
+                        <!-- Botón Iniciar Sesión -->
+                        <Button x:Name="IniciarSesionButton"
+                                Text="Iniciar Sesión" 
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                BackgroundColor="#4F46E5"
+                                CornerRadius="12"
+                                HeightRequest="50"
+                                Margin="0,10,0,0"
+                                Clicked="OnIniciarSesionClicked" />
+
+                        <!-- Enlaces inferiores -->
+                        <Grid Margin="0,20,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                   Text="¿Olvidaste tu contraseña?"
+                                   FontSize="14"
+                                   TextColor="#4F46E5"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnOlvidasteContrasenaClicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <Label Grid.Column="1"
+                                   Text="Registrarse"
+                                   FontSize="14"
+                                   TextColor="#4F46E5"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnRegistrarseClicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+
+
+</ContentPage>
