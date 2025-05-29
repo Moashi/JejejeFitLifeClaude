@@ -13,9 +13,6 @@ public partial class Log : ContentPage
     {
         _isPasswordVisible = !_isPasswordVisible;
         ContrasenaEntry.IsPassword = !_isPasswordVisible;
-
-        // Cambiar el icono del botón
-        TogglePasswordButton.Text = _isPasswordVisible ? "🙈" : "👁";
     }
 
     private async void OnIniciarSesionClicked(object sender, EventArgs e)
@@ -35,13 +32,17 @@ public partial class Log : ContentPage
             try
             {
                 // Simular proceso de login (aquí conectarías con tu backend)
-                await SimularLogin();
+                string rolUsuario = await SimularLogin();
 
-                // Si el login es exitoso, navegar a la página principal
-                await DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
-
-                // Aquí navegarías a tu página principal
-                // await Shell.Current.GoToAsync("//MainPage");
+                // Navegar según el rol del usuario
+                if (rolUsuario == "admin")
+                {
+                    await Shell.Current.GoToAsync("//AdminDashboard");
+                }
+                else if (rolUsuario == "usuario")
+                {
+                    await Shell.Current.GoToAsync("//UserDashboard");
+                }
             }
             catch (Exception ex)
             {
@@ -97,26 +98,22 @@ public partial class Log : ContentPage
         ContrasenaErrorLabel.IsVisible = false;
     }
 
-    private async Task SimularLogin()
+    private async Task<string> SimularLogin()
     {
         // Simular delay de red
         await Task.Delay(2000);
 
-        // Aquí puedes agregar validaciones adicionales
-        // Por ejemplo, verificar credenciales hardcodeadas para pruebas
         string usuario = UsuarioEntry.Text?.Trim();
         string contrasena = ContrasenaEntry.Text;
 
         // Ejemplo de validación simple para pruebas
         if (usuario?.ToLower() == "admin" && contrasena == "123456")
         {
-            // Login exitoso
-            return;
+            return "admin"; // Retorna rol de administrador
         }
         else if (usuario?.ToLower() == "test" && contrasena == "test123")
         {
-            // Login exitoso
-            return;
+            return "usuario"; // Retorna rol de usuario normal
         }
         else
         {
@@ -125,21 +122,6 @@ public partial class Log : ContentPage
         }
     }
 
-    private async void OnOlvidasteContrasenaClicked(object sender, EventArgs e)
-    {
-        await DisplayAlert("Información", "Funcionalidad de recuperación de contraseña próximamente", "OK");
-
-        // Aquí navegarías a tu página de recuperación de contraseña
-        // await Shell.Current.GoToAsync("//RecuperarContrasenaPage");
-    }
-
-    private async void OnRegistrarseClicked(object sender, EventArgs e)
-    {
-        await DisplayAlert("Información", "Funcionalidad de registro próximamente", "OK");
-
-        // Aquí navegarías a tu página de registro
-        // await Shell.Current.GoToAsync("//RegistroPage");
-    }
 
     // Método para limpiar campos (útil para testing)
     public void LimpiarCampos()
